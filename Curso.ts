@@ -6,23 +6,22 @@ export class Curso{
     private disciplinas: Disciplina[] = new Array();
     private msgs: Msg[] = new Array();
 
-    public constructor(nome:string){
+    public constructor(nome:string, disciplina: Disciplina[]){
         this.nome = nome;
+        this.disciplinas = disciplina;
     }
     
     
     public getNome() : string {
         return this.nome;
     }
-
-    
-    public setNomw(nome : string): void {
+    public setNome(nome : string): void {
         this.nome = nome;
     }
     
     
-    public BucarDisciplinas() : string {
-        
+    public getDisciplinas() : Disciplina[] {
+        return this.disciplinas;
     }
     
     

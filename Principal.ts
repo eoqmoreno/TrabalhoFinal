@@ -1,5 +1,6 @@
 import { Aluno } from "./Aluno";
+import { Servidor } from "./Servidor";
 
-let a : Aluno = new Aluno("Livia", "oia","123");
+let ser = new Servidor();
 
-console.log(a.enviarMsg("a","all"));
+console.log(ser.buscaCurso("EDI"));
