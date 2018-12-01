@@ -17,9 +17,6 @@ export class Servidor{
     private professores: Professor[] = [new Professor("João", "joao1", "aliceEOcoelho"),
     new Professor("Paulo", "paulo1", "chile"),
     new Professor("Zé Neto", "Ze1", "caixas")];
-
-    public constructor(){
-    }
     
     public getCursos() : Curso[] {
         return this.cursos;
