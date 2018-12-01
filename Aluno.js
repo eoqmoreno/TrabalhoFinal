@@ -22,7 +22,9 @@ var Aluno = /** @class */ (function (_super) {
         _this.servidor = new Servidor_1.Servidor();
         _this.disciplinas = new Array();
         // this.curso = curso;
-        _this.curso = _this.servidor.buscaCurso(curso); // 
+        if (_this.servidor.buscaCurso(curso)) {
+        }
+        _this.curso = _this.servidor.buscaCurso(curso);
         _this.matricula = matricula;
         return _this;
     }

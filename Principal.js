@@ -1,5 +1,5 @@
 "use strict";
 exports.__esModule = true;
-var Servidor_1 = require("./Servidor");
-var ser = new Servidor_1.Servidor();
-console.log(ser.buscaCurso("EDI"));
+var Controle_1 = require("./Controle");
+var controle = new Controle_1.Controle();
+console.log(controle.loginAluno(420866, "George1"));

@@ -1,6 +1,5 @@
-import { Aluno } from "./Aluno";
-import { Servidor } from "./Servidor";
+import {Controle} from "./Controle";
 
-let ser = new Servidor();
+let controle = new Controle();
 
-console.log(ser.buscaCurso("EDI"));
+console.log(controle.loginAluno(420866,"George1"))

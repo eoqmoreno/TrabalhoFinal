@@ -11,7 +11,10 @@ export class Aluno extends User{
     public constructor(nome:string, senha:string, login: string, curso:string, matricula:number){
         super(nome, login,senha);
         // this.curso = curso;
-        this.curso = this.servidor.buscaCurso(curso); // 
+        if(this.servidor.buscaCurso(curso)){
+            
+        }
+        this.curso = this.servidor.buscaCurso(curso);
         this.matricula = matricula;
     }
     
@@ -63,6 +66,5 @@ export class Aluno extends User{
                 }
             }
         }
-    }
-    
+    }    
 }
