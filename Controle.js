@@ -53,14 +53,18 @@ var Controle = /** @class */ (function () {
     };
     Controle.prototype.addAluno = function (nome, senha, login, curso, matricula) {
         if (this.tipo == "Adm") {
-            this.servidor.cadAluno(new Aluno_1.Aluno(nome, senha, login, curso, matricula));
-            return "Aluno cadastrado!";
+            if (this.servidor.buscaAluno(matricula) == undefined) {
+                this.servidor.cadAluno(new Aluno_1.Aluno(nome, senha, login, curso, matricula));
+                return "Aluno cadastrado!";
+            }
         }
     };
     Controle.prototype.addProfessor = function (nome, login, senha) {
         if (this.tipo == "Adm") {
-            this.servidor.addProfessor(new Professor_1.Professor(nome, login, senha));
-            return "Professor cadastrado!";
+            if (this.servidor.buscaProfessor(login) == undefined) {
+                this.servidor.addProfessor(new Professor_1.Professor(nome, login, senha));
+                return "Professor cadastrado!";
+            }
         }
     };
     Controle.prototype.verDisciplina = function (matricula) {

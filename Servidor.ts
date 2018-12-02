@@ -70,7 +70,7 @@ export class Servidor{
         }
     }
 
-    public buscaProfessor(nome:string):Professor{
+    public buscaProfessor(login:string):Professor{
         if(this.professores.length>0){
             for(let i of this.professores){
                 if(i.getLogin() == nome){

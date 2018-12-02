@@ -63,7 +63,7 @@ var Servidor = /** @class */ (function () {
             }
         }
     };
-    Servidor.prototype.buscaProfessor = function (nome) {
+    Servidor.prototype.buscaProfessor = function (login) {
         if (this.professores.length > 0) {
             for (var _i = 0, _a = this.professores; _i < _a.length; _i++) {
                 var i = _a[_i];

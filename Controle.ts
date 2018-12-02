@@ -62,15 +62,19 @@ export class Controle{
 
     public addAluno(nome:string,senha:string,login:string,curso:string,matricula:number):string{
         if(this.tipo == "Adm"){
-            this.servidor.cadAluno(new Aluno(nome,senha,login,curso,matricula))
-            return "Aluno cadastrado!"
+            if(this.servidor.buscaAluno(matricula)==undefined){
+               this.servidor.cadAluno(new Aluno(nome,senha,login,curso,matricula))
+                return "Aluno cadastrado!"
+            }
         }
     }
 
     public addProfessor(nome:string,login:string,senha:string):string{
         if(this.tipo == "Adm"){
-            this.servidor.addProfessor(new Professor(nome,login,senha));
-            return "Professor cadastrado!";
+            if(this.servidor.buscaProfessor(login)==undefined){
+                this.servidor.addProfessor(new Professor(nome,login,senha));
+                return "Professor cadastrado!";
+            }
         }
     }
 
