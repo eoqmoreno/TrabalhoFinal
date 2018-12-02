@@ -67,7 +67,7 @@ var Servidor = /** @class */ (function () {
         if (this.professores.length > 0) {
             for (var _i = 0, _a = this.professores; _i < _a.length; _i++) {
                 var i = _a[_i];
-                if (i.getLogin() == nome) {
+                if (i.getLogin() == login) {
                     return i;
                 }
             }
