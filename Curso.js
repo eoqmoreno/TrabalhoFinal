@@ -16,6 +16,9 @@ var Curso = /** @class */ (function () {
     Curso.prototype.getDisciplinas = function () {
         return this.disciplinas;
     };
+    Curso.prototype.addDisciplina = function (disciplina) {
+        this.disciplinas.push(disciplina);
+    };
     return Curso;
 }());
 exports.Curso = Curso;

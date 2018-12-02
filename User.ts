@@ -19,7 +19,7 @@ export abstract class User{
     
     
     public getNome() : string {
-        return this.login;
+        return this.nome;
     }
     public setNome(v : string) {
         this.nome = v;

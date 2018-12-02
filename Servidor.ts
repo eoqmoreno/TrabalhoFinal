@@ -69,5 +69,38 @@ export class Servidor{
             }
         }
     }
+
+    public buscaProfessor(nome:string):Professor{
+        if(this.professores.length>0){
+            for(let i of this.professores){
+                if(i.getLogin() == nome){
+                    return i;
+                }
+            }
+        }
+    }
+
+    public nomeProfessor(nome:string):Professor{
+        if(this.professores.length>0){
+            for(let i of this.professores){
+                if(i.getNome() == nome){
+                    return i;
+                }
+            }
+        }
+    }
+
+    public addProfessor(professor:Professor):void{
+        if(this.buscaProfessor(professor.getNome())==undefined){
+            this.professores.push(professor);
+        }
+    }
     
+    public addDisciplina(curso:string,disciplina:Disciplina):void{
+        if(this.buscaCurso(curso)!=undefined){
+            if(this.buscaDisciplina(curso,disciplina.getNome())==undefined){
+                this.buscaCurso(curso).addDisciplina(disciplina);
+            }
+        }
+    }
 }

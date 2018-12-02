@@ -24,6 +24,9 @@ export class Curso{
         return this.disciplinas;
     }
     
+    public addDisciplina(disciplina:Disciplina):void{
+        this.disciplinas.push(disciplina);
+    }
     
     
 }

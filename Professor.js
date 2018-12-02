@@ -16,11 +16,14 @@ exports.__esModule = true;
 var User_1 = require("./User");
 var Professor = /** @class */ (function (_super) {
     __extends(Professor, _super);
-    function Professor(nome, senha, login) {
+    function Professor(nome, login, senha) {
         var _this = _super.call(this, nome, login, senha) || this;
         _this.disciplinas = new Array();
         return _this;
     }
+    Professor.prototype.getTipo = function () {
+        return "Prof";
+    };
     return Professor;
 }(User_1.User));
 exports.Professor = Professor;

@@ -31,6 +31,9 @@ var Aluno = /** @class */ (function (_super) {
     Aluno.prototype.enviarMsg = function (msg, local) {
         return _super.prototype.enviarMsg.call(this, msg, local);
     };
+    Aluno.prototype.getTipo = function () {
+        return "Aluno";
+    };
     Aluno.prototype.getCurso = function () {
         return this.curso;
     };

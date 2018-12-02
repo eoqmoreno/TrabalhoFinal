@@ -63,6 +63,38 @@ var Servidor = /** @class */ (function () {
             }
         }
     };
+    Servidor.prototype.buscaProfessor = function (nome) {
+        if (this.professores.length > 0) {
+            for (var _i = 0, _a = this.professores; _i < _a.length; _i++) {
+                var i = _a[_i];
+                if (i.getLogin() == nome) {
+                    return i;
+                }
+            }
+        }
+    };
+    Servidor.prototype.nomeProfessor = function (nome) {
+        if (this.professores.length > 0) {
+            for (var _i = 0, _a = this.professores; _i < _a.length; _i++) {
+                var i = _a[_i];
+                if (i.getNome() == nome) {
+                    return i;
+                }
+            }
+        }
+    };
+    Servidor.prototype.addProfessor = function (professor) {
+        if (this.buscaProfessor(professor.getNome()) == undefined) {
+            this.professores.push(professor);
+        }
+    };
+    Servidor.prototype.addDisciplina = function (curso, disciplina) {
+        if (this.buscaCurso(curso) != undefined) {
+            if (this.buscaDisciplina(curso, disciplina.getNome()) == undefined) {
+                this.buscaCurso(curso).addDisciplina(disciplina);
+            }
+        }
+    };
     return Servidor;
 }());
 exports.Servidor = Servidor;

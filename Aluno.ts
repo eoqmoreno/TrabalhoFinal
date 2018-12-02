@@ -23,7 +23,10 @@ export class Aluno extends User{
         return super.enviarMsg(msg,local);
     }
 
-    
+    public getTipo():string{
+        return "Aluno"
+    }
+
     public getCurso() : Curso {
         return this.curso;
     }

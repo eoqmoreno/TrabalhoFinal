@@ -13,7 +13,7 @@ var User = /** @class */ (function () {
         this.login = v;
     };
     User.prototype.getNome = function () {
-        return this.login;
+        return this.nome;
     };
     User.prototype.setNome = function (v) {
         this.nome = v;
