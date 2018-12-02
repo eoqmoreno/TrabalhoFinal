@@ -30,6 +30,21 @@ var Controle = /** @class */ (function () {
             return "erro";
         }
     };
+    Controle.prototype.addDisciplina = function (matricula, disciplina) {
+        if (this.servidor.buscaDisciplina(this.buscarAluno(matricula).getCurso().getNome(), disciplina) != undefined) {
+            this.buscarAluno(matricula).addDisciplina(this.servidor.buscaDisciplina(this.buscarAluno(matricula).getCurso().getNome(), disciplina));
+        }
+    };
+    Controle.prototype.verDisciplina = function (matricula) {
+        if (this.buscarAluno(matricula) != undefined) {
+            var str = "";
+            for (var _i = 0, _a = this.buscarAluno(matricula).getDisciplinas(); _i < _a.length; _i++) {
+                var i = _a[_i];
+                str += "Disciplina: " + i.getNome() + " - Professor: " + i.getProfessor().getNome() + "\n";
+            }
+            return str;
+        }
+    };
     return Controle;
 }());
 exports.Controle = Controle;

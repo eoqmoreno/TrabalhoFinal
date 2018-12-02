@@ -3,17 +3,13 @@ exports.__esModule = true;
 var Curso_1 = require("./Curso");
 var Disciplina_1 = require("./Disciplina");
 var Professor_1 = require("./Professor");
-var Aluno_1 = require("./Aluno");
 var Servidor = /** @class */ (function () {
     function Servidor() {
         this.cursos = [new Curso_1.Curso("Design Digital", [new Disciplina_1.Disciplina("POO", new Professor_1.Professor("Andersson", "And123", "amoqueijofrito")),
                 new Disciplina_1.Disciplina("EDI", new Professor_1.Professor("João", "joao1", "aliceEOcoelho")),
                 new Disciplina_1.Disciplina("CV", new Professor_1.Professor("Paulo", "paulo1", "chile")),
                 new Disciplina_1.Disciplina("Desenho II", new Professor_1.Professor("Zé Neto", "Ze1", "caixas"))])];
-        this.alunos = [new Aluno_1.Aluno("George", "oia", "George1", "Design Digital", 420866),
-            new Aluno_1.Aluno("Ana", "pao", "Ana1", "Design Digital", 418267),
-            new Aluno_1.Aluno("Alice", "italia", "Alice1", "Design Digital", 420065),
-            new Aluno_1.Aluno("Gabriel", "bolinha de batata", "Gabriel1", "Design Digital", 42579)];
+        this.alunos = new Array();
         this.professores = [new Professor_1.Professor("João", "joao1", "aliceEOcoelho"),
             new Professor_1.Professor("Paulo", "paulo1", "chile"),
             new Professor_1.Professor("Zé Neto", "Ze1", "caixas")];

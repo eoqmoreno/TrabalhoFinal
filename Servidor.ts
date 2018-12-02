@@ -8,11 +8,8 @@ export class Servidor{
     new Disciplina("EDI", new Professor("João", "joao1", "aliceEOcoelho")), 
     new Disciplina("CV", new Professor("Paulo", "paulo1", "chile")),
     new Disciplina("Desenho II", new Professor("Zé Neto", "Ze1", "caixas"))])];
-    
-    private alunos: Aluno[] = [new Aluno("George","oia","George1","Design Digital", 420866),
-    new Aluno("Ana", "pao","Ana1","Design Digital",418267),
-    new Aluno("Alice","italia","Alice1","Design Digital", 420065),
-    new Aluno("Gabriel","bolinha de batata","Gabriel1","Design Digital", 42579)];
+
+    private alunos:Aluno[] = new Array();
 
     private professores: Professor[] = [new Professor("João", "joao1", "aliceEOcoelho"),
     new Professor("Paulo", "paulo1", "chile"),

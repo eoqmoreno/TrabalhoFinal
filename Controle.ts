@@ -41,4 +41,20 @@ export class Controle{
         }
     }
 
+    public addDisciplina(matricula:number,disciplina:string):void{
+        if(this.servidor.buscaDisciplina(this.buscarAluno(matricula).getCurso().getNome(),disciplina)!=undefined){
+            this.buscarAluno(matricula).addDisciplina(this.servidor.buscaDisciplina(this.buscarAluno(matricula).getCurso().getNome(),disciplina));
+        }
+    }
+
+    public verDisciplina(matricula):string{
+        if(this.buscarAluno(matricula)!=undefined){
+            let str : string = "";
+            for(let i of this.buscarAluno(matricula).getDisciplinas()){
+                str += "Disciplina: " + i.getNome() + " - Professor: " + i.getProfessor().getNome() + "\n";
+            }
+            return str;
+        }
+    }
+
 }
