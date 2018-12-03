@@ -36,7 +36,7 @@ export class Servidor{
         return this.alunos;
     }
 
-    public buscaCurso(curso:string): Curso|undefined{
+    public buscaCurso(curso:string): Curso{
         if(this.cursos.length>0){
             for(let i of this.cursos){
                 if(i.getNome() == curso){
@@ -46,7 +46,7 @@ export class Servidor{
         }
     }
     
-    public buscaDisciplina(curso:string,disc:string) : Disciplina|undefined {
+    public buscaDisciplina(curso:string,disc:string) : Disciplina{
         if(this.buscaCurso(curso)!=undefined){
             let curs = this.buscaCurso(curso);
             for(let i of curs.getDisciplinas()){

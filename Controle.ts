@@ -1,10 +1,11 @@
 import { Aluno } from "./Aluno";
 import { Professor } from "./Professor";
 import { Servidor } from "./Servidor";
-import { Msg } from "./Msg";
 import { Disciplina } from "./Disciplina";
 import { User } from "./User";
 import { Adm } from "./Adm";
+import { LoginErro } from "./LoginError";
+import { PermissaoErro } from "./PermissaoErro";
 
 
 export class Controle{
@@ -26,6 +27,8 @@ export class Controle{
         if(this.servidor.buscaAluno(matricula).getSenha() == senha){
             this.setTipo(this.buscarAluno(matricula));
             return "Bem vindo "+this.buscarAluno(matricula).getNome()+"!";
+        }else{
+            throw new LoginErro("Senha incorreta");
         }
     }
 
@@ -33,6 +36,8 @@ export class Controle{
         if(this.servidor.buscaProfessor(nome).getSenha()==senha){
             this.setTipo(this.servidor.buscaProfessor(nome));
             return "Bem vindo professor "+this.servidor.buscaProfessor(nome).getNome()+"!";
+        }else{
+            throw new LoginErro("Senha incorreto!");
         }
     }
     
@@ -40,6 +45,8 @@ export class Controle{
         if(login == "admin" && senha == "admin"){
             this.setTipo(new Adm());
             return "Bem vindo Administrador!";
+        }else{
+            throw new LoginErro("Senha e/ou usuário incorretos!");
         }
     }
 
@@ -48,6 +55,8 @@ export class Controle{
             if(this.servidor.buscaDisciplina(this.buscarAluno(matricula).getCurso().getNome(),disciplina)!=undefined){
                 this.buscarAluno(matricula).addDisciplina(this.servidor.buscaDisciplina(this.buscarAluno(matricula).getCurso().getNome(),disciplina));
             }
+        }else{
+            throw new PermissaoErro("Você não tem permissão para executar essa ação!")
         }
     }
 
@@ -59,6 +68,8 @@ export class Controle{
                     return "Disciplina Cadastrada";
                 }
             }
+        }else{
+            throw new PermissaoErro("Você não tem permissão para executar essa ação!")
         }
     }
 
@@ -68,6 +79,8 @@ export class Controle{
                this.servidor.cadAluno(new Aluno(nome,senha,login,curso,matricula))
                 return "Aluno cadastrado!"
             }
+        }else{
+            throw new PermissaoErro("Você não tem permissão para executar essa ação!")
         }
     }
 
@@ -77,10 +90,12 @@ export class Controle{
                 this.servidor.addProfessor(new Professor(nome,login,senha));
                 return "Professor cadastrado!";
             }
+        }else{
+            throw new PermissaoErro("Você não tem permissão para executar essa ação!")
         }
     }
 
-    public verDisciplina(matricula):string{
+    public verBoletim(matricula):string{
         if(this.tipo.getTipo() == "Aluno"){
             if(this.buscarAluno(matricula)!=undefined){
                 let str : string = "";
@@ -89,16 +104,20 @@ export class Controle{
                 }
                 return str;
             }
+        }else{
+            throw new PermissaoErro("Você não tem permissão para executar essa ação!")
         }
     }
 
     public verAlunos():string{
-        if(this.tipo.getTipo() == "Adm"){
+        if(this.tipo.getTipo() == "Adm" || this.tipo.getTipo() == "Prof"){
             let str:string = "";
             for(let i of this.servidor.getAlunos()){
                 str += i.getNome() + "\n"
             }
             return str;
+        }else{
+            throw new PermissaoErro("Você não tem permissão para executar essa ação!")
         }
     }
 
@@ -109,6 +128,8 @@ export class Controle{
                 str += i.getNome() + "\n"
             }
             return str;
+        }else{
+            throw new PermissaoErro("Você não tem permissão para executar essa ação!")
         }
     }
     
@@ -124,7 +145,10 @@ export class Controle{
                 this.servidor.nomeAluno(aluno).buscarDisciplina(disciplina.getNome()).setNota(nota);
                 
             }
+        }else{
+            throw new PermissaoErro("Você não tem permissão para executar essa ação!")
         }
     }
     
+
 }

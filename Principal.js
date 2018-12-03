@@ -4,8 +4,10 @@ var readline = require('readline-sync');
 var Controle_1 = require("./Controle");
 var controle = new Controle_1.Controle();
 controle.addAluno("George", "oia", "oia", "Design Digital", 420866);
+controle.addDisciplinaAluno(420866, "EDI");
+controle.addDisciplinaAluno(420866, "CV");
 function menu() {
-    console.log("Menu: \n addAluno \n addProf \n loginAluno \n loginProf \n loginAdm \n addDisciplina \n addDisciplinaAluno \n verDisciplina \n addNota \n menu \n sair");
+    console.log("Menu: \n addAluno \n addProf \n loginAluno \n loginProf \n loginAdm \n verBoletim \n addDisciplinaAluno \n verDisciplina \n addNota \n verAlunos \n menu \n sair");
 }
 menu();
 var status = true;
@@ -52,9 +54,9 @@ while (status) {
             var logAdmSenha = readline.question("Digite a senha:");
             console.log(controle.loginAdm(logAdmNome, logAdmSenha));
             break;
-        case "verDisciplina":
+        case "verBoletim":
             var numMatricula = readline.question("Digite a matricula: ");
-            console.log(controle.verDisciplina(numMatricula));
+            console.log(controle.verBoletim(numMatricula));
             break;
         case "menu":
             menu();
@@ -69,6 +71,8 @@ while (status) {
             var nota = readline.question("Digite a nota: ");
             controle.addNota(cursoNota, alunoNota, nota);
             break;
+        case "verAlunos":
+            console.log(controle.verAlunos());
         case "sair":
             status = false;
             break;

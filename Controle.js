@@ -5,6 +5,8 @@ var Professor_1 = require("./Professor");
 var Servidor_1 = require("./Servidor");
 var Disciplina_1 = require("./Disciplina");
 var Adm_1 = require("./Adm");
+var LoginError_1 = require("./LoginError");
+var PermissaoErro_1 = require("./PermissaoErro");
 var Controle = /** @class */ (function () {
     function Controle() {
         this.servidor = new Servidor_1.Servidor();
@@ -21,11 +23,17 @@ var Controle = /** @class */ (function () {
             this.setTipo(this.buscarAluno(matricula));
             return "Bem vindo " + this.buscarAluno(matricula).getNome() + "!";
         }
+        else {
+            throw new LoginError_1.LoginErro("Senha incorreta");
+        }
     };
     Controle.prototype.loginProfessor = function (nome, senha) {
         if (this.servidor.buscaProfessor(nome).getSenha() == senha) {
             this.setTipo(this.servidor.buscaProfessor(nome));
             return "Bem vindo professor " + this.servidor.buscaProfessor(nome).getNome() + "!";
+        }
+        else {
+            throw new LoginError_1.LoginErro("Senha incorreto!");
         }
     };
     Controle.prototype.loginAdm = function (login, senha) {
@@ -33,12 +41,18 @@ var Controle = /** @class */ (function () {
             this.setTipo(new Adm_1.Adm());
             return "Bem vindo Administrador!";
         }
+        else {
+            throw new LoginError_1.LoginErro("Senha e/ou usuário incorretos!");
+        }
     };
     Controle.prototype.addDisciplinaAluno = function (matricula, disciplina) {
         if (this.tipo.getTipo() == "Adm") {
             if (this.servidor.buscaDisciplina(this.buscarAluno(matricula).getCurso().getNome(), disciplina) != undefined) {
                 this.buscarAluno(matricula).addDisciplina(this.servidor.buscaDisciplina(this.buscarAluno(matricula).getCurso().getNome(), disciplina));
             }
+        }
+        else {
+            throw new PermissaoErro_1.PermissaoErro("Você não tem permissão para executar essa ação!");
         }
     };
     Controle.prototype.addDisciplina = function (nome, curso, professor) {
@@ -50,6 +64,9 @@ var Controle = /** @class */ (function () {
                 }
             }
         }
+        else {
+            throw new PermissaoErro_1.PermissaoErro("Você não tem permissão para executar essa ação!");
+        }
     };
     Controle.prototype.addAluno = function (nome, senha, login, curso, matricula) {
         if (this.tipo.getTipo() == "Adm") {
@@ -57,6 +74,9 @@ var Controle = /** @class */ (function () {
                 this.servidor.cadAluno(new Aluno_1.Aluno(nome, senha, login, curso, matricula));
                 return "Aluno cadastrado!";
             }
+        }
+        else {
+            throw new PermissaoErro_1.PermissaoErro("Você não tem permissão para executar essa ação!");
         }
     };
     Controle.prototype.addProfessor = function (nome, login, senha) {
@@ -66,8 +86,11 @@ var Controle = /** @class */ (function () {
                 return "Professor cadastrado!";
             }
         }
+        else {
+            throw new PermissaoErro_1.PermissaoErro("Você não tem permissão para executar essa ação!");
+        }
     };
-    Controle.prototype.verDisciplina = function (matricula) {
+    Controle.prototype.verBoletim = function (matricula) {
         if (this.tipo.getTipo() == "Aluno") {
             if (this.buscarAluno(matricula) != undefined) {
                 var str = "";
@@ -78,15 +101,21 @@ var Controle = /** @class */ (function () {
                 return str;
             }
         }
+        else {
+            throw new PermissaoErro_1.PermissaoErro("Você não tem permissão para executar essa ação!");
+        }
     };
     Controle.prototype.verAlunos = function () {
-        if (this.tipo.getTipo() == "Adm") {
+        if (this.tipo.getTipo() == "Adm" || this.tipo.getTipo() == "Prof") {
             var str = "";
             for (var _i = 0, _a = this.servidor.getAlunos(); _i < _a.length; _i++) {
                 var i = _a[_i];
                 str += i.getNome() + "\n";
             }
             return str;
+        }
+        else {
+            throw new PermissaoErro_1.PermissaoErro("Você não tem permissão para executar essa ação!");
         }
     };
     Controle.prototype.verDisciplinas = function (curso) {
@@ -97,6 +126,9 @@ var Controle = /** @class */ (function () {
                 str += i.getNome() + "\n";
             }
             return str;
+        }
+        else {
+            throw new PermissaoErro_1.PermissaoErro("Você não tem permissão para executar essa ação!");
         }
     };
     Controle.prototype.addNota = function (curso, aluno, nota) {
@@ -110,6 +142,9 @@ var Controle = /** @class */ (function () {
                 }
                 this.servidor.nomeAluno(aluno).buscarDisciplina(disciplina.getNome()).setNota(nota);
             }
+        }
+        else {
+            throw new PermissaoErro_1.PermissaoErro("Você não tem permissão para executar essa ação!");
         }
     };
     return Controle;

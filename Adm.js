@@ -17,9 +17,7 @@ var User_1 = require("./User");
 var Adm = /** @class */ (function (_super) {
     __extends(Adm, _super);
     function Adm() {
-        var _this = _super.call(this, "Administrador", "admin", "admin", "Adm") || this;
-        _this.disciplinas = new Array();
-        return _this;
+        return _super.call(this, "Administrador", "admin", "admin", "Adm") || this;
     }
     return Adm;
 }(User_1.User));

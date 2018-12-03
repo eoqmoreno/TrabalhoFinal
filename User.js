@@ -28,9 +28,6 @@ var User = /** @class */ (function () {
     User.prototype.getTipo = function () {
         return this.tipo;
     };
-    User.prototype.enviarMsg = function (msg, local) {
-        return msg + local;
-    };
     return User;
 }());
 exports.User = User;

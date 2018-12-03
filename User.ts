@@ -38,9 +38,4 @@ export abstract class User{
     public getTipo(){
         return this.tipo;
     }
-
-    public enviarMsg(msg:string,local:string):string{
-        return msg + local;        
-    }
-
 }
