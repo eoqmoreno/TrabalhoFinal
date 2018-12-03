@@ -28,8 +28,8 @@ var Aluno = /** @class */ (function (_super) {
         _this.matricula = matricula;
         return _this;
     }
-    Aluno.prototype.enviarMsg = function (msg, local) {
-        return _super.prototype.enviarMsg.call(this, msg, local);
+    Aluno.prototype.getTipo = function () {
+        return "Adm";
     };
     Aluno.prototype.getCurso = function () {
         return this.curso;
@@ -51,15 +51,6 @@ var Aluno = /** @class */ (function (_super) {
     };
     Aluno.prototype.addDisciplina = function (disciplina) {
         this.disciplinas.push(disciplina);
-    };
-    Aluno.prototype.remDisciplinas = function (nome) {
-        if (this.buscarDisciplina(nome) != undefined) {
-            for (var i in this.disciplinas) {
-                if (this.disciplinas[i] == this.buscarDisciplina(nome)) {
-                    this.disciplinas.splice(Number(i), 1);
-                }
-            }
-        }
     };
     Aluno.prototype.buscarDisciplina = function (nome) {
         if (this.disciplinas.length > 0) {

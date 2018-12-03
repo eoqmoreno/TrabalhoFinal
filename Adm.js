@@ -19,6 +19,9 @@ var Adm = /** @class */ (function (_super) {
     function Adm() {
         return _super.call(this, "Administrador", "admin", "admin", "Adm") || this;
     }
+    Adm.prototype.getTipo = function () {
+        return "Adm";
+    };
     return Adm;
 }(User_1.User));
 exports.Adm = Adm;

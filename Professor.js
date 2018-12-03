@@ -19,6 +19,9 @@ var Professor = /** @class */ (function (_super) {
     function Professor(nome, login, senha) {
         return _super.call(this, nome, login, senha, "Prof") || this;
     }
+    Professor.prototype.getTipo = function () {
+        return "Adm";
+    };
     return Professor;
 }(User_1.User));
 exports.Professor = Professor;

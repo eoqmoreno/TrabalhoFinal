@@ -3,7 +3,6 @@ exports.__esModule = true;
 var Curso = /** @class */ (function () {
     function Curso(nome, disciplina) {
         this.disciplinas = new Array();
-        this.msgs = new Array();
         this.nome = nome;
         this.disciplinas = disciplina;
     }

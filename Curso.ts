@@ -3,7 +3,6 @@ import { Disciplina } from "./Disciplina";
 export class Curso{
     private nome:string;
     private disciplinas: Disciplina[] = new Array();
-    private msgs: Msg[] = new Array();
 
     public constructor(nome:string, disciplina: Disciplina[]){
         this.nome = nome;

@@ -17,6 +17,10 @@ export class Aluno extends User{
         this.curso = this.servidor.buscaCurso(curso);
         this.matricula = matricula;
     }
+
+    public getTipo():string{
+        return "Adm";
+    }
     
     public getCurso() : Curso {
         return this.curso;

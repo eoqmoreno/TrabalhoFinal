@@ -7,6 +7,7 @@ var Disciplina_1 = require("./Disciplina");
 var Adm_1 = require("./Adm");
 var LoginError_1 = require("./LoginError");
 var PermissaoErro_1 = require("./PermissaoErro");
+var JaCadastradoErro_1 = require("./JaCadastradoErro");
 var Controle = /** @class */ (function () {
     function Controle() {
         this.servidor = new Servidor_1.Servidor();
@@ -50,6 +51,9 @@ var Controle = /** @class */ (function () {
             if (this.servidor.buscaDisciplina(this.buscarAluno(matricula).getCurso().getNome(), disciplina) != undefined) {
                 this.buscarAluno(matricula).addDisciplina(this.servidor.buscaDisciplina(this.buscarAluno(matricula).getCurso().getNome(), disciplina));
             }
+            else {
+                throw new JaCadastradoErro_1.JaCadastradoErro("Disciplina já cadastrada");
+            }
         }
         else {
             throw new PermissaoErro_1.PermissaoErro("Você não tem permissão para executar essa ação!");
@@ -63,6 +67,9 @@ var Controle = /** @class */ (function () {
                     return "Disciplina Cadastrada";
                 }
             }
+            else {
+                throw new JaCadastradoErro_1.JaCadastradoErro("Disciplina já cadastrada");
+            }
         }
         else {
             throw new PermissaoErro_1.PermissaoErro("Você não tem permissão para executar essa ação!");
@@ -74,6 +81,9 @@ var Controle = /** @class */ (function () {
                 this.servidor.cadAluno(new Aluno_1.Aluno(nome, senha, login, curso, matricula));
                 return "Aluno cadastrado!";
             }
+            else {
+                throw new JaCadastradoErro_1.JaCadastradoErro("Usuário já cadastrado!");
+            }
         }
         else {
             throw new PermissaoErro_1.PermissaoErro("Você não tem permissão para executar essa ação!");
@@ -84,6 +94,9 @@ var Controle = /** @class */ (function () {
             if (this.servidor.buscaProfessor(login) == undefined) {
                 this.servidor.addProfessor(new Professor_1.Professor(nome, login, senha));
                 return "Professor cadastrado!";
+            }
+            else {
+                throw new JaCadastradoErro_1.JaCadastradoErro("Professor já cadastrado");
             }
         }
         else {
