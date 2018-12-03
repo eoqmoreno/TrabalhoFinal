@@ -2,11 +2,13 @@ export abstract class User{
     private nome: string;
     private login: string;
     private senha: string;
+    private tipo: string;
     
-    public constructor(nome:string,login:string,senha:string){
+    public constructor(nome:string,login:string,senha:string,tipo:string){
         this.login = login;
         this.nome = nome;
         this.senha = senha;
+        this.tipo = tipo;
     }
 
     
@@ -33,6 +35,10 @@ export abstract class User{
         this.senha = v;
     }
     
+    public getTipo(){
+        return this.tipo;
+    }
+
     public enviarMsg(msg:string,local:string):string{
         return msg + local;        
     }

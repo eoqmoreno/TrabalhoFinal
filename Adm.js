@@ -14,11 +14,13 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var User_1 = require("./User");
-var Professor = /** @class */ (function (_super) {
-    __extends(Professor, _super);
-    function Professor(nome, login, senha) {
-        return _super.call(this, nome, login, senha, "Prof") || this;
+var Adm = /** @class */ (function (_super) {
+    __extends(Adm, _super);
+    function Adm() {
+        var _this = _super.call(this, "Administrador", "admin", "admin", "Adm") || this;
+        _this.disciplinas = new Array();
+        return _this;
     }
-    return Professor;
+    return Adm;
 }(User_1.User));
-exports.Professor = Professor;
+exports.Adm = Adm;

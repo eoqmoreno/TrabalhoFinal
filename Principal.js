@@ -5,7 +5,7 @@ var Controle_1 = require("./Controle");
 var controle = new Controle_1.Controle();
 controle.addAluno("George", "oia", "oia", "Design Digital", 420866);
 function menu() {
-    console.log("Menu: \n addAluno \n addProf \n buscarAluno \n verAluno \n loginAluno \n loginProf \n loginAdm \n addDisciplina \n addDisciplinaAluno \n verDisciplina \n menu \n sair");
+    console.log("Menu: \n addAluno \n addProf \n loginAluno \n loginProf \n loginAdm \n addDisciplina \n addDisciplinaAluno \n verDisciplina \n addNota \n menu \n sair");
 }
 menu();
 var status = true;
@@ -62,6 +62,12 @@ while (status) {
         case "verDisciplinas":
             var cursoDisc = readline.question("Digite o curso: ");
             console.log(controle.verDisciplinas(cursoDisc));
+            break;
+        case "addNota":
+            var cursoNota = readline.question("Digite o curso: ");
+            var alunoNota = readline.question("Digite o nome do aluno: ");
+            var nota = readline.question("Digite a nota: ");
+            controle.addNota(cursoNota, alunoNota, nota);
             break;
         case "sair":
             status = false;

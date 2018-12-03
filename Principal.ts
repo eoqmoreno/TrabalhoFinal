@@ -7,7 +7,7 @@ let controle = new Controle();
 controle.addAluno("George","oia","oia","Design Digital", 420866)
 
 function menu(){
-    console.log("Menu: \n addAluno \n addProf \n buscarAluno \n verAluno \n loginAluno \n loginProf \n loginAdm \n addDisciplina \n addDisciplinaAluno \n verDisciplina \n menu \n sair");
+    console.log("Menu: \n addAluno \n addProf \n loginAluno \n loginProf \n loginAdm \n addDisciplina \n addDisciplinaAluno \n verDisciplina \n addNota \n menu \n sair");
 }
 
 menu();
@@ -76,7 +76,13 @@ switch(comando){
         let cursoDisc:string = readline.question("Digite o curso: ")
         console.log(controle.verDisciplinas(cursoDisc));
         break;
-        
+    case "addNota":
+        let cursoNota:string = readline.question("Digite o curso: ");
+        let alunoNota:string = readline.question("Digite o nome do aluno: ");
+        let nota:number = readline.question("Digite a nota: ");
+        controle.addNota(cursoNota,alunoNota,nota);
+        break;
+
     case "sair":
         status = false;
         break;

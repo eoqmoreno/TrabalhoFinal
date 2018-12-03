@@ -18,7 +18,7 @@ var Servidor_1 = require("./Servidor");
 var Aluno = /** @class */ (function (_super) {
     __extends(Aluno, _super);
     function Aluno(nome, senha, login, curso, matricula) {
-        var _this = _super.call(this, nome, login, senha) || this;
+        var _this = _super.call(this, nome, login, senha, "Aluno") || this;
         _this.servidor = new Servidor_1.Servidor();
         _this.disciplinas = new Array();
         // this.curso = curso;
@@ -30,9 +30,6 @@ var Aluno = /** @class */ (function (_super) {
     }
     Aluno.prototype.enviarMsg = function (msg, local) {
         return _super.prototype.enviarMsg.call(this, msg, local);
-    };
-    Aluno.prototype.getTipo = function () {
-        return "Aluno";
     };
     Aluno.prototype.getCurso = function () {
         return this.curso;

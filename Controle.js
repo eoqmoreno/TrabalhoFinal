@@ -4,10 +4,11 @@ var Aluno_1 = require("./Aluno");
 var Professor_1 = require("./Professor");
 var Servidor_1 = require("./Servidor");
 var Disciplina_1 = require("./Disciplina");
+var Adm_1 = require("./Adm");
 var Controle = /** @class */ (function () {
     function Controle() {
         this.servidor = new Servidor_1.Servidor();
-        this.tipo = "Adm";
+        this.tipo = new Adm_1.Adm();
     }
     Controle.prototype.setTipo = function (tipo) {
         this.tipo = tipo;
@@ -17,42 +18,41 @@ var Controle = /** @class */ (function () {
     };
     Controle.prototype.loginAluno = function (matricula, senha) {
         if (this.servidor.buscaAluno(matricula).getSenha() == senha) {
-            this.setTipo(this.buscarAluno(matricula).getTipo());
+            this.setTipo(this.buscarAluno(matricula));
             return "Bem vindo " + this.buscarAluno(matricula).getNome() + "!";
         }
     };
     Controle.prototype.loginProfessor = function (nome, senha) {
         if (this.servidor.buscaProfessor(nome).getSenha() == senha) {
-            this.setTipo(this.servidor.buscaProfessor(nome).getTipo());
+            this.setTipo(this.servidor.buscaProfessor(nome));
             return "Bem vindo professor " + this.servidor.buscaProfessor(nome).getNome() + "!";
         }
     };
     Controle.prototype.loginAdm = function (login, senha) {
         if (login == "admin" && senha == "admin") {
-            this.setTipo("Adm");
+            this.setTipo(new Adm_1.Adm());
             return "Bem vindo Administrador!";
         }
     };
     Controle.prototype.addDisciplinaAluno = function (matricula, disciplina) {
-        if (this.tipo == "Adm") {
+        if (this.tipo.getTipo() == "Adm") {
             if (this.servidor.buscaDisciplina(this.buscarAluno(matricula).getCurso().getNome(), disciplina) != undefined) {
                 this.buscarAluno(matricula).addDisciplina(this.servidor.buscaDisciplina(this.buscarAluno(matricula).getCurso().getNome(), disciplina));
             }
         }
     };
     Controle.prototype.addDisciplina = function (nome, curso, professor) {
-        if (this.tipo == "Adm") {
+        if (this.tipo.getTipo() == "Adm") {
             if (this.servidor.buscaDisciplina(curso, nome) == undefined) {
                 if (this.servidor.nomeProfessor(professor) != undefined) {
                     this.servidor.addDisciplina(curso, new Disciplina_1.Disciplina(nome, this.servidor.buscaProfessor(professor)));
                     return "Disciplina Cadastrada";
                 }
-                return "Professor not found";
             }
         }
     };
     Controle.prototype.addAluno = function (nome, senha, login, curso, matricula) {
-        if (this.tipo == "Adm") {
+        if (this.tipo.getTipo() == "Adm") {
             if (this.servidor.buscaAluno(matricula) == undefined) {
                 this.servidor.cadAluno(new Aluno_1.Aluno(nome, senha, login, curso, matricula));
                 return "Aluno cadastrado!";
@@ -60,7 +60,7 @@ var Controle = /** @class */ (function () {
         }
     };
     Controle.prototype.addProfessor = function (nome, login, senha) {
-        if (this.tipo == "Adm") {
+        if (this.tipo.getTipo() == "Adm") {
             if (this.servidor.buscaProfessor(login) == undefined) {
                 this.servidor.addProfessor(new Professor_1.Professor(nome, login, senha));
                 return "Professor cadastrado!";
@@ -68,17 +68,19 @@ var Controle = /** @class */ (function () {
         }
     };
     Controle.prototype.verDisciplina = function (matricula) {
-        if (this.buscarAluno(matricula) != undefined) {
-            var str = "";
-            for (var _i = 0, _a = this.buscarAluno(matricula).getDisciplinas(); _i < _a.length; _i++) {
-                var i = _a[_i];
-                str += "Disciplina: " + i.getNome() + " - Professor: " + i.getProfessor().getNome() + "\n";
+        if (this.tipo.getTipo() == "Aluno") {
+            if (this.buscarAluno(matricula) != undefined) {
+                var str = "";
+                for (var _i = 0, _a = this.buscarAluno(matricula).getDisciplinas(); _i < _a.length; _i++) {
+                    var i = _a[_i];
+                    str += "Disc: " + i.getNome() + " - Prof: " + i.getProfessor().getNome() + " - M: " + i.getNota() + "\n";
+                }
+                return str;
             }
-            return str;
         }
     };
     Controle.prototype.verAlunos = function () {
-        if (this.tipo == "Adm") {
+        if (this.tipo.getTipo() == "Adm") {
             var str = "";
             for (var _i = 0, _a = this.servidor.getAlunos(); _i < _a.length; _i++) {
                 var i = _a[_i];
@@ -88,13 +90,26 @@ var Controle = /** @class */ (function () {
         }
     };
     Controle.prototype.verDisciplinas = function (curso) {
-        if (this.tipo == "Adm") {
+        if (this.tipo.getTipo() == "Adm") {
             var str = "";
             for (var _i = 0, _a = this.servidor.buscaCurso(curso).getDisciplinas(); _i < _a.length; _i++) {
                 var i = _a[_i];
                 str += i.getNome() + "\n";
             }
             return str;
+        }
+    };
+    Controle.prototype.addNota = function (curso, aluno, nota) {
+        if (this.tipo.getTipo() == "Prof") {
+            if (this.servidor.buscaCurso(curso) != undefined) {
+                var disciplina = void 0;
+                for (var i in this.servidor.buscaCurso(curso).getDisciplinas()) {
+                    if (this.servidor.buscaCurso(curso).getDisciplinas()[i].getProfessor().getLogin() == this.tipo.getLogin()) {
+                        disciplina = this.servidor.buscaCurso(curso).getDisciplinas()[i];
+                    }
+                }
+                this.servidor.nomeAluno(aluno).buscarDisciplina(disciplina.getNome()).setNota(nota);
+            }
         }
     };
     return Controle;

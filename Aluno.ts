@@ -9,7 +9,7 @@ export class Aluno extends User{
     private servidor:Servidor = new Servidor();
     private disciplinas:Disciplina[] = new Array();
     public constructor(nome:string, senha:string, login: string, curso:string, matricula:number){
-        super(nome, login,senha);
+        super(nome, login,senha,"Aluno");
         // this.curso = curso;
         if(this.servidor.buscaCurso(curso)){
             
@@ -21,10 +21,6 @@ export class Aluno extends User{
     
     public enviarMsg(msg:string, local: string):string{
         return super.enviarMsg(msg,local);
-    }
-
-    public getTipo():string{
-        return "Aluno"
     }
 
     public getCurso() : Curso {

@@ -2,16 +2,10 @@
 exports.__esModule = true;
 var Disciplina = /** @class */ (function () {
     function Disciplina(nome, professor) {
-        this.msgs = new Array();
         this.nome = nome;
         this.professor = professor;
+        this.nota = 0;
     }
-    Disciplina.prototype.getMsgs = function () {
-        return this.msgs;
-    };
-    Disciplina.prototype.setMsgs = function (msgs) {
-        this.msgs = msgs;
-    };
     Disciplina.prototype.getNome = function () {
         return this.nome;
     };
@@ -23,6 +17,12 @@ var Disciplina = /** @class */ (function () {
     };
     Disciplina.prototype.setProfessor = function (professor) {
         this.professor = professor;
+    };
+    Disciplina.prototype.getNota = function () {
+        return this.nota;
+    };
+    Disciplina.prototype.setNota = function (v) {
+        this.nota = v;
     };
     return Disciplina;
 }());

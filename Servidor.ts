@@ -4,7 +4,8 @@ import { Professor } from "./Professor";
 import { Aluno } from "./Aluno";
 
 export class Servidor{
-    private cursos:Curso[] = [new Curso("Design Digital",[new Disciplina("POO", new Professor("Andersson", "And123", "amoqueijofrito")),
+    private cursos:Curso[] = [new Curso("Design Digital",
+    [new Disciplina("POO", new Professor("Andersson", "And123", "amoqueijofrito")),
     new Disciplina("EDI", new Professor("João", "joao1", "aliceEOcoelho")), 
     new Disciplina("CV", new Professor("Paulo", "paulo1", "chile")),
     new Disciplina("Desenho II", new Professor("Zé Neto", "Ze1", "caixas"))])];
@@ -64,6 +65,16 @@ export class Servidor{
         if(this.alunos.length>0){
             for(let i of this.alunos){
                 if(i.getMatricula() == matricula){
+                    return i;
+                }
+            }
+        }
+    }
+
+    public nomeAluno(nome:string):Aluno{
+        if(this.alunos.length>0){
+            for(let i of this.alunos){
+                if(i.getNome() == nome){
                     return i;
                 }
             }

@@ -1,21 +1,13 @@
-import { Msg } from "./Msg";
 import { Professor } from "./Professor";
 export class Disciplina{
-    private msgs: Msg[]= new Array();
     private nome:string;
     private professor: Professor;
+    private nota:number;
 
     constructor(nome:string,professor:Professor){
         this.nome = nome;
         this.professor = professor;
-    }
-
-    public getMsgs(): Msg[] {
-        return this.msgs;
-    }
-
-    public setMsgs (msgs : Msg[]) {
-        this.msgs = msgs;
+        this.nota = 0;
     }
 
     public getNome() : string {
@@ -33,5 +25,14 @@ export class Disciplina{
     public setProfessor(professor: Professor) {
         this.professor = professor;
     }
+
+    public getNota() : number {
+        return this.nota;
+    }
+    
+    public setNota(v : number) {
+        this.nota = v;
+    }
+    
     
 }
