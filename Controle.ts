@@ -6,6 +6,7 @@ import { User } from "./User";
 import { Adm } from "./Adm";
 import { LoginErro } from "./LoginError";
 import { PermissaoErro } from "./PermissaoErro";
+import { JaCadastradoErro } from "./JaCadastradoErro";
 
 
 export class Controle{
@@ -54,6 +55,8 @@ export class Controle{
         if(this.tipo.getTipo() == "Adm"){
             if(this.servidor.buscaDisciplina(this.buscarAluno(matricula).getCurso().getNome(),disciplina)!=undefined){
                 this.buscarAluno(matricula).addDisciplina(this.servidor.buscaDisciplina(this.buscarAluno(matricula).getCurso().getNome(),disciplina));
+            }else{
+                throw new JaCadastradoErro("Disciplina já cadastrada");
             }
         }else{
             throw new PermissaoErro("Você não tem permissão para executar essa ação!")
@@ -67,6 +70,8 @@ export class Controle{
                     this.servidor.addDisciplina(curso,new Disciplina(nome,this.servidor.buscaProfessor(professor)));
                     return "Disciplina Cadastrada";
                 }
+            }else{
+                throw new JaCadastradoErro("Disciplina já cadastrada");                    
             }
         }else{
             throw new PermissaoErro("Você não tem permissão para executar essa ação!")
@@ -78,6 +83,8 @@ export class Controle{
             if(this.servidor.buscaAluno(matricula)==undefined){
                this.servidor.cadAluno(new Aluno(nome,senha,login,curso,matricula))
                 return "Aluno cadastrado!"
+            }else{
+                throw new JaCadastradoErro("Usuário já cadastrado!");
             }
         }else{
             throw new PermissaoErro("Você não tem permissão para executar essa ação!")
@@ -89,6 +96,8 @@ export class Controle{
             if(this.servidor.buscaProfessor(login)==undefined){
                 this.servidor.addProfessor(new Professor(nome,login,senha));
                 return "Professor cadastrado!";
+            }else{
+                throw new JaCadastradoErro("Professor já cadastrado");
             }
         }else{
             throw new PermissaoErro("Você não tem permissão para executar essa ação!")

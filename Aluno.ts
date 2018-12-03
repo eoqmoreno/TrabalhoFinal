@@ -18,46 +18,32 @@ export class Aluno extends User{
         this.matricula = matricula;
     }
     
-    
-    public enviarMsg(msg:string, local: string):string{
-        return super.enviarMsg(msg,local);
-    }
-
     public getCurso() : Curso {
         return this.curso;
     }
-    public setCurso(v : Curso) {
+    public setCurso(v : Curso): void {
         this.curso = v;
     }
     
     public getMatricula() : number {
         return this.matricula;
     }
-    public setMatricula(v : number) {
+    public setMatricula(v : number): void {
         this.matricula = v;
     }
     
     public getDisciplinas() : Disciplina[] {
         return this.disciplinas;
     }
-    public setDisciplinas(v : Disciplina[]) {
+    public setDisciplinas(v : Disciplina[]): void {
         this.disciplinas = v;
     }
 
-    public addDisciplina(disciplina:Disciplina){
+    public addDisciplina(disciplina:Disciplina):void{
         this.disciplinas.push(disciplina);
     }
-    public remDisciplinas(nome:string){
-        if(this.buscarDisciplina(nome)!=undefined){
-            for(let i in this.disciplinas){
-                if(this.disciplinas[i] == this.buscarDisciplina(nome)){
-                    this.disciplinas.splice(Number(i),1);
-                }
-            }
-        }    
-    }
 
-    public buscarDisciplina(nome:string):Disciplina|undefined{
+    public buscarDisciplina(nome:string):Disciplina{
         if(this.disciplinas.length>0){
             for(let i of this.disciplinas){
                 if(i.getNome() == nome){

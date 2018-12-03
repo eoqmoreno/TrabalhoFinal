@@ -1,5 +1,4 @@
 import { Disciplina } from "./Disciplina";
-import { Msg } from "./Msg";
 
 export class Curso{
     private nome:string;
